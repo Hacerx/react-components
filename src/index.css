@@ -1,0 +1,24 @@
+@tailwind base;
+/* Firefox */
+* {
+    /* scrollbar-width: thin; */
+    /* scrollbar-color: hsl(var(--b2) / var(--tw-bg-opacity)) hsl(var(--bc))/var(--tw-text-opacity, 1); */
+  }
+  
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: hsl(var(--b2) / var(--tw-text-opacity, 1));
+    border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--b1));
+    border-radius: 14px;
+    border: 5px solid hsl(var(--b1));
+}
+@tailwind components;
+@tailwind utilities;
