@@ -1,7 +1,17 @@
 import classNames from "classnames";
 import { useState, useEffect, useRef } from "react";
 
-const Combobox = ({selected, placeholder="Search...", options=[], selectPreview=false, onSelected =() => undefined }) => {
+const Combobox = ({
+    selected, 
+    placeholder="Search...", 
+    options=[], 
+    selectPreview=false,
+    label="",
+    rightLabel="",
+    bottomLeftLabel="",
+    bottomRightLabel="",
+    onSelected =() => undefined
+}) => {
 
     const [open, setOpen] = useState(false);
     const [searchValue, setSearchValue] = useState('');
@@ -83,6 +93,12 @@ const Combobox = ({selected, placeholder="Search...", options=[], selectPreview=
             "dropdown w-full": true,
             "dropdown-open": open,
         })}>
+            {(label || rightLabel) &&
+                <label className="label">
+                    <span className="label-text">{label}</span>
+                    <span className="label-text-alt">{rightLabel}</span>
+                </label>
+            }
             <input
                 type="text"
                 className="input input-bordered w-full"
@@ -94,8 +110,14 @@ const Combobox = ({selected, placeholder="Search...", options=[], selectPreview=
                 onBlur={handleBlur}
                 tabIndex={0}
             />
+            {(bottomLeftLabel || bottomRightLabel) &&
+                <label className="label">
+                    <span className="label-text-alt">{bottomLeftLabel}</span>
+                    <span className="label-text-alt">{bottomRightLabel}</span>
+                </label>
+            }
             {open &&
-            <div className="dropdown-content bg-base-200 top-14 max-h-96 overflow-auto flex-col rounded-md w-full z-10" onBlur={handleBlur}>
+            <div className="dropdown-content bg-base-200 top-17 max-h-96 overflow-auto flex-col rounded-md w-full z-10" onBlur={handleBlur}>
                 <ul className="menu menu-compact">
                     {filteredOptions?.map((item, index) => {
                         return (
